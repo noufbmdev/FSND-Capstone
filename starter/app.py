@@ -5,13 +5,11 @@ from models import Movie, Actor, setup_db
 from auth import requires_auth, AuthError
 import os
 
-database_path = 'postgresql://Nouf:nono2314@localhost:5432/capstone'
-
 
 def create_app(test_config=None):
     # create and configure the app
     app = Flask(__name__)
-    setup_db(app, database_path)
+    setup_db(app, os.environ['DATABASE_URL'])
     CORS(app)
     return app
 

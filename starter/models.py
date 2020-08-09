@@ -3,14 +3,16 @@ import os
 
 db = SQLAlchemy()
 
+
 # setup_db(app) binds a flask application and a SQLAlchemy service
 def setup_db(app, database_path):
-    app.config["SQLALCHEMY_DATABASE_URI"] = 'postgresql://Nouf:nono2314@localhost:5432/capstone'
+    app.config["SQLALCHEMY_DATABASE_URI"] = os.environ['DATABASE_URL']
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     db.app = app
     db.init_app(app)
     db.drop_all()
     db.create_all()
+
 
 class Movie (db.Model):
     __tablename__ = 'movie'
