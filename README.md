@@ -142,6 +142,7 @@ The postman collection allows for both **local** (Local folder) and **live testi
 - Adds a movie to the DB.
 - Headers:
     - Authorization with 'add:movie' permission.
+    - Content-Type with application/json.
 - Request Arguments:
     - title - Movie's title (String)
     - releaseDate - Movie's release date (Datetime object)
@@ -158,6 +159,7 @@ The postman collection allows for both **local** (Local folder) and **live testi
 - Updates a movie's title in the DB.
 - Headers:
     - Authorization with 'modify:movie' permission.
+    - Content-Type with application/json.
 - Request Arguments:
     - title - Movie's title (String)
 - Response Codes:
