@@ -6,6 +6,7 @@ from auth import requires_auth, AuthError
 import os
 
 
+# create_app() sets up the app and db
 def create_app(test_config=None):
     # create and configure the app
     app = Flask(__name__)
@@ -17,10 +18,12 @@ def create_app(test_config=None):
 APP = create_app()
 
 
+# format() formats db.model instances using the format method for each class.
 def format(list):
     return [item.format() for item in list]
 
 
+# get() queries a db.model class and checks for 404 error.
 def get(table):
     data = table.query.all()
 

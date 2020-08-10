@@ -5,7 +5,7 @@ from functools import wraps
 from jose import jwt
 from urllib.request import urlopen
 
-
+# retrieves environment variables required for decoding tokens.
 AUTH0_DOMAIN = os.environ['AUTH0_DOMAIN']
 ALGORITHMS = os.environ['ALGORITHMS']
 API_AUDIENCE = os.environ['AUDIENCE']
@@ -125,6 +125,7 @@ def verify_decode_jwt(token):
             }, 401)
 
 
+# decorator used to check for authorization on endpoints.
 def requires_auth(permission=''):
     def requires_auth_decorator(f):
         @wraps(f)

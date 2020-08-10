@@ -10,7 +10,8 @@ def setup_db(app, database_path):
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     db.app = app
     db.init_app(app)
-    db.drop_all()
+    # uncomment to clear db
+    # db.drop_all()
     db.create_all()
 
 
@@ -84,6 +85,7 @@ class Actor (db.Model):
         return json.dumps(self.format())
 
 
+# Table for many to many relationship between movies and actors.
 class MoviesActors(db.Model):
     __tablename__ = 'movies_actors'
     id = db.Column(db.Integer, primary_key=True)

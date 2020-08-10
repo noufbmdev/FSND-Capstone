@@ -7,6 +7,7 @@ from sqlalchemy import func
 from app import APP, format
 from models import Movie, Actor, setup_db
 
+# Executive producer token has all permissions.
 token = os.environ['EXECUTIVE_PRODUCER_TOKEN']
 
 
@@ -30,6 +31,7 @@ class CapstoneTestCase(unittest.TestCase):
     # testGetMoviesSuccess() tests for successful behaviour
     # by checking against the database.
     def testGetMoviesSuccess(self):
+        # Ensures there is at least one movie in the database to get.
         movie = Movie('Spirited Away', datetime.datetime(2001, 7, 20))
         movie.add()
 
@@ -40,12 +42,13 @@ class CapstoneTestCase(unittest.TestCase):
                                      headers=self.headers)
         data = json.loads(response.data.decode())
 
-        # sameIds = all([data['movies'][i]['id'] ==
-        #                movies[i].id for i in range(0, numOfMovies)])
+        # Checks the ids in the response against the ids in the database.
+        sameIds = all([data['movies'][i]['id'] ==
+                       movies[i].id for i in range(0, numOfMovies)])
 
         self.assertEqual(response.status_code, 200)
         self.assertTrue(isinstance(data['movies'], list))
-        # self.assertTrue(sameIds)
+        self.assertTrue(sameIds)
         self.assertEqual(len(data['movies']), numOfMovies)
 
     # testGetActorsFailure() tests for failed behaviour
@@ -62,6 +65,7 @@ class CapstoneTestCase(unittest.TestCase):
     # testGetActorsSuccess() tests for successful behaviour
     # by checking against the database.
     def testGetActorsSuccess(self):
+        # Ensures there is at least one actor in the database to get.
         actor = Actor('James', '21', 'Male')
         actor.add()
 
@@ -72,6 +76,7 @@ class CapstoneTestCase(unittest.TestCase):
                                      headers=self.headers)
         data = json.loads(response.data.decode())
 
+        # Checks the ids in the response against the ids in the database.
         sameIds = all([data['actors'][i]['id'] ==
                        actors[i].id for i in range(0, numOfActors)])
 
@@ -119,6 +124,7 @@ class CapstoneTestCase(unittest.TestCase):
     # testUpdateMovieSuccess() tests for successful behaviour
     # by checking against the database.
     def testUpdateMovieSuccess(self):
+        # Ensures there is at least one movie in the database to update.
         movie = Movie('Spirited Away', datetime.datetime(2001, 7, 20))
         movie.add()
 
@@ -148,6 +154,7 @@ class CapstoneTestCase(unittest.TestCase):
     # testDeleteActorSuccess() tests for successful behaviour
     # by checking against the database.
     def testDeleteActorSuccess(self):
+        # Ensures there is at least one actor in the database to delete.
         actor = Actor('JamesJ', '21', 'Male')
         actor.add()
 

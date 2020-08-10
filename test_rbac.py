@@ -7,6 +7,7 @@ from sqlalchemy import func
 from app import APP, format
 from models import Movie, Actor, setup_db
 
+# Retrieve tokens for each role.
 EPToken = os.environ['EXECUTIVE_PRODUCER_TOKEN']
 CDToken = os.environ['CASTING_DIRECTOR_TOKEN']
 CAToken = os.environ['CASTING_ASSISTANT_TOKEN']
@@ -34,6 +35,7 @@ class CapstoneTestCase(unittest.TestCase):
     # Tests that demonstrate role-based access control.
 
     def testCastingAssistantGetMovies(self):
+        # Ensures there is at least one movie in the database to get.
         movie = Movie('Spirited Away', datetime.datetime(2001, 7, 20))
         movie.add()
 
@@ -42,6 +44,7 @@ class CapstoneTestCase(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
 
     def testCastingAssistantGetActors(self):
+        # Ensures there is at least one actor in the database to get.
         actor = Actor('James', '21', 'Male')
         actor.add()
 
@@ -50,6 +53,7 @@ class CapstoneTestCase(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
 
     def testCastingDirectorUpdateMovie(self):
+        # Ensures there is at least one movie in the database to update.
         movie = Movie('Spirited Away', datetime.datetime(2001, 7, 20))
         movie.add()
 
@@ -61,6 +65,7 @@ class CapstoneTestCase(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
 
     def testCastingDirectorDeleteActor(self):
+        # Ensures there is at least one actor in the database to delete.
         actor = Actor('JamesJ', '21', 'Male')
         actor.add()
 
@@ -71,6 +76,7 @@ class CapstoneTestCase(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
 
     def testExecutiveProducerUpdateMovie(self):
+        # Ensures there is at least one movie in the database to update.
         movie = Movie('Spirited Away', datetime.datetime(2001, 7, 20))
         movie.add()
 
