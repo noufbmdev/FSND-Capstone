@@ -1,4 +1,4 @@
-export DATABASE_URL='postgresql://Nouf:nono2314@localhost:5432/capstone'
+export DATABASE_URL='postgresql://:@localhost:5432/'
 export AUTH0_DOMAIN='fsnd-nouf.auth0.com'
 export ALGORITHMS='RS256'
 export AUDIENCE='capstone'
