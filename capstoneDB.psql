@@ -57,6 +57,17 @@ ALTER SEQUENCE public.actor_id_seq OWNED BY public.actor.id;
 
 
 --
+-- Name: alembic_version; Type: TABLE; Schema: public; Owner: Nouf
+--
+
+CREATE TABLE public.alembic_version (
+    version_num character varying(32) NOT NULL
+);
+
+
+ALTER TABLE public.alembic_version OWNER TO "Nouf";
+
+--
 -- Name: movie; Type: TABLE; Schema: public; Owner: Nouf
 --
 
@@ -123,6 +134,19 @@ ALTER TABLE ONLY public.movie ALTER COLUMN id SET DEFAULT nextval('public.movie_
 --
 
 COPY public.actor (id, name, age, gender) FROM stdin;
+1	No-Face	0	NA
+2	Haku	12	Male
+3	Totoro	0	Male
+4	Kiki	13	Female
+5	Jiji	13	Male
+\.
+
+
+--
+-- Data for Name: alembic_version; Type: TABLE DATA; Schema: public; Owner: Nouf
+--
+
+COPY public.alembic_version (version_num) FROM stdin;
 \.
 
 
@@ -132,6 +156,10 @@ COPY public.actor (id, name, age, gender) FROM stdin;
 
 COPY public.movie (id, title, "releaseDate") FROM stdin;
 1	Spirited Away	2001-07-20 00:00:00
+2	Ponyo	2008-07-19 00:00:00
+3	Kikis Delivery Service	1989-07-29 00:00:00
+4	Only Yesterday	2001-07-20 00:00:00
+5	My Neighbor Totoro	1988-04-16 00:00:00
 \.
 
 
@@ -140,6 +168,11 @@ COPY public.movie (id, title, "releaseDate") FROM stdin;
 --
 
 COPY public.movies_actors (id, movie_id, actor_id) FROM stdin;
+1	1	1
+2	1	2
+3	3	4
+4	3	5
+5	5	3
 \.
 
 
@@ -154,7 +187,7 @@ SELECT pg_catalog.setval('public.actor_id_seq', 1, false);
 -- Name: movie_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Nouf
 --
 
-SELECT pg_catalog.setval('public.movie_id_seq', 1, true);
+SELECT pg_catalog.setval('public.movie_id_seq', 1, false);
 
 
 --
@@ -163,6 +196,14 @@ SELECT pg_catalog.setval('public.movie_id_seq', 1, true);
 
 ALTER TABLE ONLY public.actor
     ADD CONSTRAINT actor_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: alembic_version alembic_version_pkc; Type: CONSTRAINT; Schema: public; Owner: Nouf
+--
+
+ALTER TABLE ONLY public.alembic_version
+    ADD CONSTRAINT alembic_version_pkc PRIMARY KEY (version_num);
 
 
 --
