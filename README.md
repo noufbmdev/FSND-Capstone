@@ -1,6 +1,6 @@
 # FSND-Capstone
 An API for managing actors and movies.\
-Live Heroku App URL: https://capstone-nouf.herokuapp.com/
+Live Heroku App URL: https://capstone-nouf.herokuapp.com/movies
 > Please note that currently the application does not have a front-end.
 
 ## Motivation
