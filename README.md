@@ -59,11 +59,11 @@ The code adheres to the [PEP 8](https://www.python.org/dev/peps/pep-0008/) style
 `heroku login`
 3. Create an app on Heroku:\
 `heroku create <name of the app>`
-4. Add git remote for Heroku to local repository:
+4. Add git remote for Heroku to local repository:\
 `git remote add heroku <Heroku Git URL>`
 5. Add postgresql heroku addon:\
 `heroku addons:create heroku-postgresql:hobby-dev --app <Application Name>`
-6. Configure variables in Heroku dashboard:\
+6. Configure variables in Heroku dashboard:
 ```
 AUTH0_DOMAIN='fsnd-nouf.auth0.com'
 ALGORITHMS='RS256'
@@ -98,6 +98,12 @@ The postman collection allows for both **local** (Local folder) and **live testi
 #### GET `/movies`
 - Gets all movies from the DB.
 - Returns a list of movies.
+- Headers:
+    - Authorization with 'view:content' permission.
+- Request Arguments: None.
+- Response Codes:
+    - 200 OK - Successful.
+    - 404 Not Found - Empty table.
 ```
 {
     "movies": [
@@ -132,7 +138,15 @@ The postman collection allows for both **local** (Local folder) and **live testi
 ```
 #### POST `/movies`
 - Adds a movie to the DB.
-- Returns
+- Headers:
+    - Authorization with 'add:movie' permission.
+- Request Arguments:
+    - title - Movie's title (String)
+    - releaseDate - Movie's release date (Datetime object)
+        - Format: YYYY-MM-DD HH:MM:SS
+- Response Codes:
+    - 200 OK - Successful.
+    - 400 Bad Request - Missing body.
 ```
 {
     "success": true
@@ -140,7 +154,14 @@ The postman collection allows for both **local** (Local folder) and **live testi
 ```
 #### PATCH `/movies/<int:movie_id>`
 - Updates a movie's title in the DB.
-- Returns
+- Headers:
+    - Authorization with 'modify:movie' permission.
+- Request Arguments:
+    - title - Movie's title (String)
+- Response Codes:
+    - 200 OK - Successful.
+    - 400 Bad Request - Missing body.
+    - 404 Not Found - Empty table.
 ```
 {
     "success": true,
@@ -151,6 +172,12 @@ The postman collection allows for both **local** (Local folder) and **live testi
 #### GET `/actors`
 - Gets all actors from the DB.
 - Returns a list of actors.
+- Headers:
+    - Authorization with 'view:content' permission.
+- Request Arguments: None.
+- Response Codes:
+    - 200 OK - Successful.
+    - 404 Not Found - Empty table.
 ```
 {
     "actors": [
@@ -190,7 +217,12 @@ The postman collection allows for both **local** (Local folder) and **live testi
 ```
 #### DELETE `/actors/<int:actor_id>`
 - Deletes an actor from the DB.
-- Returns
+- Headers:
+    - Authorization with 'delete:actor' permission.
+- Request Arguments: None.
+- Response Codes:
+    - 200 OK - Successful.
+    - 404 Not Found - An actor with the ID was not found in the DB.
 ```
 {
     "actor_id": 1,
