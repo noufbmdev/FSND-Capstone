@@ -31,9 +31,6 @@ CREATE TABLE public.actor (
     gender character varying(10)
 );
 
-
-ALTER TABLE public.actor OWNER TO "Nouf";
-
 --
 -- Name: actor_id_seq; Type: SEQUENCE; Schema: public; Owner: Nouf
 --
@@ -46,14 +43,9 @@ CREATE SEQUENCE public.actor_id_seq
     NO MAXVALUE
     CACHE 1;
 
-
-ALTER TABLE public.actor_id_seq OWNER TO "Nouf";
-
 --
 -- Name: actor_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: Nouf
 --
-
-ALTER SEQUENCE public.actor_id_seq OWNED BY public.actor.id;
 
 
 --
@@ -64,9 +56,6 @@ CREATE TABLE public.alembic_version (
     version_num character varying(32) NOT NULL
 );
 
-
-ALTER TABLE public.alembic_version OWNER TO "Nouf";
-
 --
 -- Name: movie; Type: TABLE; Schema: public; Owner: Nouf
 --
@@ -76,9 +65,6 @@ CREATE TABLE public.movie (
     title character varying(150),
     "releaseDate" timestamp without time zone
 );
-
-
-ALTER TABLE public.movie OWNER TO "Nouf";
 
 --
 -- Name: movie_id_seq; Type: SEQUENCE; Schema: public; Owner: Nouf
@@ -91,9 +77,6 @@ CREATE SEQUENCE public.movie_id_seq
     NO MINVALUE
     NO MAXVALUE
     CACHE 1;
-
-
-ALTER TABLE public.movie_id_seq OWNER TO "Nouf";
 
 --
 -- Name: movie_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: Nouf
@@ -111,9 +94,6 @@ CREATE TABLE public.movies_actors (
     movie_id integer NOT NULL,
     actor_id integer NOT NULL
 );
-
-
-ALTER TABLE public.movies_actors OWNER TO "Nouf";
 
 --
 -- Name: actor id; Type: DEFAULT; Schema: public; Owner: Nouf
@@ -151,7 +131,7 @@ COPY public.alembic_version (version_num) FROM stdin;
 
 
 --
--- Data for Name: movie; Type: TABLE DATA; Schema: public; Owner: Nouf
+-- Data for Name: movie; Type: TABLE DATA; Schema: public;
 --
 
 COPY public.movie (id, title, "releaseDate") FROM stdin;

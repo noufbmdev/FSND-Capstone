@@ -42,7 +42,6 @@ class Movie (db.Model):
             'id': self.id,
             'title': self.title,
             'releaseDate': self.releaseDate,
-            'actors': self.actors
         }
 
     def __repr__(self):
