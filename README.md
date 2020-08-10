@@ -74,6 +74,8 @@ CASTING_ASSISTANT_TOKEN=''
 ```
 7. Push the repository to Heroku:\
 `git push heroku master`
+8. Populate DB with sample data:\
+`heroku pg:psql --app <Application Name> < capstoneDB.psql`
 
 ## Testing
 The **unittest** python module was used in creating the following test files:
